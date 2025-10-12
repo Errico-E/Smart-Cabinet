@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Kitchen Cabinet | Specifications</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2a2a2a);
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #111, #222);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    header h1 { font-size: 2rem; color: #fff; }
+    header p { color: #bbb; }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .image-area {
+      flex: 1 1 400px;
+      text-align: center;
+    }
+
+    .image-area img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .details {
+      flex: 1 1 400px;
+    }
+
+    .details h2 {
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    .specs {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .specs li {
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border-left: 3px solid #6a00ff;
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background: linear-gradient(135deg, #6a00ff, #a855f7);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .cta a:hover { box-shadow: 0 0 15px rgba(150,100,255,0.6); }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+      padding: 20px 0;
+      border-top: 1px solid #444;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Smart Kitchen Cabinet</h1>
+    <p>Detailed Specifications</p>
+  </header>
+
+  <div class="container">
+    <div class="image-area">
+      <img id="product-image" src="images/Blackseries.png" alt="Product Image">
+    </div>
+
+    <div class="details">
+      <h2 id="product-title">L-Shape Smart Kitchen Cabinet</h2>
+      <ul class="specs" id="spec-list">
+        <li>Material: Matte black countertop with warm underlighting and brushed metal accents</li>
+        <li>Smart Features: Integrated AI cooking assistant, touch-screen display for recipes and control, sensor lightning, auto-safety shutoff system</li>
+        <li>Connectivity: Dual-mode connectivity (Wi-Fi, Bluetooth) for smart home and mobile app integration</li>
+        <li>Dimensions: 2.5m x 0.8m counter surface with L-shaped ergonomic layout</li>
+        <li>Power Supply: Built-in rechargeable module with low-energy LED illumination</li>
+      </ul>
+      <div class="cta">
+        <a href="Product gallery.html">⬅ Back to Gallery</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Harmonies — Designed for Modern Living
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view');
+    const img = document.getElementById('product-image');
+    const title = document.getElementById('product-title');
+    const specs = document.getElementById('spec-list');
+
+    // change based on view id
+    if (view === '2') {
+      img.src = 'images/Whiteseries.png';
+      title.textContent = 'Smart Kitchen Cabinet - Metallic Edition';
+      specs.innerHTML = `
+        <li>Material: Silver-tinted tempered glass and steel</li>
+        <li>Smart Display: 12” interactive panel</li>
+        <li>Voice Assistant: Google Home / Alexa compatible</li>
+        <li>Cooling Drawer: Smart chiller with temperature control</li>
+        <li>Energy Rating: A+ efficiency class</li>
+      `;
+    } else if (view === '3') {
+      img.src = 'images/kitchen3.jpg';
+      title.textContent = 'Smart Kitchen Cabinet - Luxury Edition';
+      specs.innerHTML = `
+        <li>Material: Black marble with violet LED trim</li>
+        <li>Smart Sensors: Smoke, heat, and ingredient freshness</li>
+        <li>Integrated Power Dock: Wireless phone & appliance charging</li>
+        <li>App Integration: Harmony SmartLink mobile control</li>
+        <li>Warranty: 3 Years Premium Support</li>
+      `;
+    }
+  </script>
+</body>
+</html>

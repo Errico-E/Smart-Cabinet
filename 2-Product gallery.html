@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Gallery | Smart Kitchen Cabinet</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2a2a2a);
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 2rem;
+      color: #fff;
+    }
+    p {
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      perspective: 1000px;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    .carousel img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+      left: 0; top: 0;
+      cursor: pointer;
+      border: 2px solid #444;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .carousel img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(180,100,255,0.5);
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      color: #111;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.3s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,1); }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+
+    .cta {
+      margin: 40px 0;
+    }
+    .cta a {
+      text-decoration: none;
+      background: linear-gradient(135deg, #6a00ff, #a855f7);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .cta a:hover { box-shadow: 0 0 15px rgba(150,100,255,0.6); }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+      padding: 20px 0;
+      border-top: 1px solid #444;
+      margin-top: auto;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🖼️ Smart Kitchen Cabinet</h1>
+  <p>Click an image to view full specifications.</p>
+
+  <div class="carousel-container">
+    <button class="nav-btn prev">&#8592;</button>
+    <div class="carousel">
+      <img src="images/Blackseries.png" alt="View 1" onclick="openProduct(1)">
+      <img src="images/Whiteseries.png" alt="View 2" onclick="openProduct(2)">
+      <img src="images/kitchen3.jpg" alt="View 3" onclick="openProduct(3)">
+    </div>
+    <button class="nav-btn next">&#8594;</button>
+  </div>
+
+  <div class="cta">
+    <a href="Smart Cabinet.html">⬅️ Back to Home</a>
+  </div>
+
+  <footer>
+    © 2025 Harmonies — Innovation for Modern Living
+  </footer>
+
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const images = document.querySelectorAll('.carousel img');
+    const total = images.length;
+    let index = 0;
+
+    function rotateCarousel() {
+      const angle = index * -360 / total;
+      carousel.style.transform = `translateZ(-400px) rotateY(${angle}deg)`;
+    }
+
+    document.querySelector('.next').addEventListener('click', () => {
+      index = (index + 1) % total;
+      rotateCarousel();
+    });
+
+    document.querySelector('.prev').addEventListener('click', () => {
+      index = (index - 1 + total) % total;
+      rotateCarousel();
+    });
+
+    images.forEach((img, i) => {
+      const angle = i * 360 / total;
+      img.style.transform = `rotateY(${angle}deg) translateZ(400px)`;
+    });
+
+    // Redirect to product details page
+    function openProduct(id) {
+      window.location.href = `Specifications.html?view=${id}`;
+    }
+  </script>
+</body>
+</html>

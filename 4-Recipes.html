@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Kitchen Recipes</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #090909, #141414, #1f1f1f);
+      color: #eee;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: linear-gradient(135deg, #0f0f0f, #191919);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    header p {
+      color: #bbb;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Add Recipe Form */
+    .add-recipe {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .add-recipe h2 {
+      color: #fff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .add-recipe input, .add-recipe textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .add-recipe button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #6a00ff, #a855f7);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .add-recipe button:hover {
+      box-shadow: 0 0 10px rgba(150, 80, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* Recipe Cards */
+    .recipe-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .recipe-card {
+      background: linear-gradient(145deg, #131313, #1e1e1e);
+      padding: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: 0.3s ease;
+    }
+    .recipe-card:hover {
+      box-shadow: 0 6px 16px rgba(150, 80, 255, 0.6);
+      transform: translateY(-3px);
+    }
+    .recipe-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .recipe-card p {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 20px 0;
+      margin-top: 60px;
+      border-top: 1px solid #333;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>📖 Smart Kitchen Recipes</h1>
+    <p>Add, explore, and cook smarter — right from your kitchen assistant.</p>
+  </header>
+
+  <div class="container">
+    <div class="add-recipe">
+      <h2>Add New Recipe</h2>
+      <input type="text" id="recipeName" placeholder="Recipe Name" required>
+      <textarea id="recipeDescription" rows="3" placeholder="Short Description" required></textarea>
+      <textarea id="recipeSteps" rows="5" placeholder="Step-by-step instructions..." required></textarea>
+      <button onclick="addRecipe()">Add Recipe</button>
+    </div>
+
+    <h2 style="text-align:center; margin-bottom:20px;">Available Recipes</h2>
+    <div class="recipe-list" id="recipeList"></div>
+  </div>
+
+  <footer>
+    © 2025 Harmonies — Innovation for Modern Cooking
+  </footer>
+
+  <script>
+    // Load recipes from localStorage
+    let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+
+    function displayRecipes() {
+      const list = document.getElementById('recipeList');
+      list.innerHTML = '';
+      recipes.forEach((recipe, index) => {
+        const div = document.createElement('div');
+        div.className = 'recipe-card';
+        div.innerHTML = `
+          <h3>${recipe.name}</h3>
+          <p>${recipe.description}</p>
+        `;
+        div.onclick = () => openRecipe(index);
+        list.appendChild(div);
+      });
+    }
+
+    function addRecipe() {
+      const name = document.getElementById('recipeName').value.trim();
+      const description = document.getElementById('recipeDescription').value.trim();
+      const steps = document.getElementById('recipeSteps').value.trim();
+      if (!name || !description || !steps) return alert("Please fill out all fields!");
+
+      const newRecipe = { name, description, steps };
+      recipes.push(newRecipe);
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+
+      document.getElementById('recipeName').value = '';
+      document.getElementById('recipeDescription').value = '';
+      document.getElementById('recipeSteps').value = '';
+      displayRecipes();
+    }
+
+    function openRecipe(index) {
+      localStorage.setItem('selectedRecipe', index);
+      window.location.href ='Recipes_Details.html';
+    }
+
+    displayRecipes();
+  </script>
+</body>
+</html>
